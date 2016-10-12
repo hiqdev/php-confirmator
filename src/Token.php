@@ -10,8 +10,22 @@ class Token
 
     public function __construct(array $data = [], $string = null)
     {
-        $this->data = $data;
+        $this->data = $this->prepareData($data);
         $this->string = $string ?: $this->genString();
+    }
+
+    protected function prepareData(array $data)
+    {
+        if (empty($data['notAfter'])) {
+            $data['notAfter'] = '+ 1 week';
+        }
+        foreach ($data as $key => &$value) {
+            if ($key === 'notAfter' || $key === 'notBefore') {
+                $value = date('Y-m-d H:i:s', strtotime($value));
+            }
+        }
+
+        return $data;
     }
 
     public function toString()
