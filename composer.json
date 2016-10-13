@@ -49,7 +49,8 @@
     },
     "autoload": {
         "psr-4": {
-            "hiqdev\\php\\confirmator\\": "src"
+            "hiqdev\\php\\confirmator\\": "src",
+            "hiqdev\\yii2\\confirmator\\": "yii2"
         }
     }
 }
