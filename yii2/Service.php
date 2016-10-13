@@ -19,9 +19,13 @@ class Service extends \yii\base\Component
     public function getStorage()
     {
         if (is_array($this->_storage)) {
-            if (isset($this->_storage['path'])) {
-                $this->_storage['path'] = Yii::getAlias($this->_storage['path']);
+            $config = $this->_storage;
+            if (isset($config['path'])) {
+                $config['path'] = Yii::getAlias($config['path']);
             }
+            $this->_storage = Yii::createObject($config);
         }
+
+        return $this->_storage;
     }
 }

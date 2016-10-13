@@ -6,7 +6,7 @@ class FileStorage implements StorageInterface
 {
     public $path;
 
-    public function __construct($path)
+    public function __construct($path = null)
     {
         $this->path = $path;
     }
