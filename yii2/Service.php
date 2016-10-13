@@ -20,7 +20,7 @@ class Service extends \yii\base\Component
     {
         if (is_array($this->_storage)) {
             $config = $this->_storage;
-            if (isset($config['path'])) {
+            if (isset($config['path']) && is_string($config['path'])) {
                 $config['path'] = Yii::getAlias($config['path']);
             }
             $this->_storage = Yii::createObject($config);
