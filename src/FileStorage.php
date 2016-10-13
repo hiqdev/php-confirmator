@@ -2,7 +2,7 @@
 
 namespace hiqdev\php\confirmator;
 
-class Storage implements StorageInterface
+class FileStorage implements StorageInterface
 {
     public $path;
 
