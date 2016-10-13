@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * Library for confirmation tokens
+ *
+ * @link      https://github.com/hiqdev/php-confirmator
+ * @package   php-confirmator
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hiqdev\php\confirmator;
 
 class Token
@@ -38,7 +47,7 @@ class Token
         $res = '';
         $chars = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $last = strlen($chars) - 1;
-        for ($i = 0; $i < $length; $i++) {
+        for ($i = 0; $i < $length; ++$i) {
             $res .= $chars[mt_rand(0, $last)];
         }
 
@@ -77,7 +86,7 @@ class Token
             return true;
         }
 
-        return time()>strtotime($this->data['notBefore']);
+        return time() > strtotime($this->data['notBefore']);
     }
 
     public function checkNotAfter()
@@ -86,6 +95,6 @@ class Token
             return true;
         }
 
-        return time()<strtotime($this->data['notAfter']);
+        return time() < strtotime($this->data['notAfter']);
     }
 }

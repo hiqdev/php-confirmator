@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * Library for confirmation tokens
+ *
+ * @link      https://github.com/hiqdev/php-confirmator
+ * @package   php-confirmator
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hiqdev\php\confirmator\tests\unit;
 
 use hiqdev\php\confirmator\FileStorage;
@@ -20,8 +29,8 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
     {
         $this->storage = new FileStorage(dirname(__DIR__) . '/tokens');
         $this->service = new Service($this->storage);
-        $this->notAfter = date('Y-m-d H:i:s', time()+3600);
-        $this->notBefore = date('Y-m-d H:i:s', time()-3600);
+        $this->notAfter = date('Y-m-d H:i:s', time() + 3600);
+        $this->notBefore = date('Y-m-d H:i:s', time() - 3600);
     }
 
     protected function tearDown()

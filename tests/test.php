@@ -3,7 +3,7 @@
 
 use hiqdev\php\confirmator\Token;
 
-require "_bootstrap.php";
+require '_bootstrap.php';
 
 $token = new Token([
     'action' => 'test',

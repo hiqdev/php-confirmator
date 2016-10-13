@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * Library for confirmation tokens
+ *
+ * @link      https://github.com/hiqdev/php-confirmator
+ * @package   php-confirmator
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hiqdev\php\confirmator;
 
 class FileStorage implements StorageInterface
@@ -24,6 +33,7 @@ class FileStorage implements StorageInterface
     public function get($name)
     {
         $path = $this->getFullPath($name);
+
         return is_file($path) ? file_get_contents($this->getFullPath($name)) : null;
     }
 
@@ -37,5 +47,4 @@ class FileStorage implements StorageInterface
 
         return file_put_contents($path, $text);
     }
-
 }
