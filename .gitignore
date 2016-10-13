@@ -32,5 +32,5 @@ php-cs-fixer.phar
 phpunit-skelgen.phar
 phpunit.phar
 
-# testing storage
-/tests/storage
+# testing tokens storage
+/tests/tokens

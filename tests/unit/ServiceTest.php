@@ -2,7 +2,7 @@
 
 namespace hiqdev\php\confirmator\tests\unit;
 
-use hiqdev\php\confirmator\Storage;
+use hiqdev\php\confirmator\FileStorage;
 use hiqdev\php\confirmator\Service;
 use hiqdev\php\confirmator\Token;
 
@@ -18,7 +18,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->storage = new Storage(dirname(__DIR__) . '/storage');
+        $this->storage = new FileStorage(dirname(__DIR__) . '/tokens');
         $this->service = new Service($this->storage);
         $this->notAfter = date('Y-m-d H:i:s', time()+3600);
         $this->notBefore = date('Y-m-d H:i:s', time()-3600);
