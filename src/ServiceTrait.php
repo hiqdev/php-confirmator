@@ -49,6 +49,6 @@ trait ServiceTrait
 
     protected function writeToken(Token $token)
     {
-        return $this->getStorage()->set($token->toString(), json_encode($token->mget()));
+        return $this->getStorage()->set((string)$token, json_encode($token->mget()));
     }
 }

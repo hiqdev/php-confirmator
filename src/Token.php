@@ -37,7 +37,7 @@ class Token
         return $data;
     }
 
-    public function toString()
+    public function __toString()
     {
         return $this->string;
     }

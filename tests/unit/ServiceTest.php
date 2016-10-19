@@ -56,11 +56,11 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
             'action'    => $this->action,
             'username'  => $this->username,
         ]));
-        $this->assertTrue($this->service->checkToken($token->toString(), [
+        $this->assertTrue($this->service->checkToken((string)$token, [
             'action'    => $this->action,
             'username'  => $this->username,
         ]));
-        $this->assertFalse($this->service->checkToken($token->toString(), [
+        $this->assertFalse($this->service->checkToken((string)$token, [
             'action'    => 'other',
         ]));
     }
@@ -79,7 +79,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testFindToken()
     {
-        $tokenString = $this->issueToken()->toString();
+        $tokenString = (string)$this->issueToken();
         $token = $this->service->findToken($tokenString);
         $this->assertInstanceOf(Token::class, $token);
         $this->assertSame($this->action, $token->get('action'));
