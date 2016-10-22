@@ -13,6 +13,7 @@ namespace hiqdev\yii2\confirmator;
 
 use hiqdev\php\confirmator\ServiceTrait;
 use Yii;
+use yii\helpers\Inflector;
 
 class Service extends \yii\base\Component
 {
@@ -36,5 +37,34 @@ class Service extends \yii\base\Component
         }
 
         return $this->_storage;
+    }
+
+    public function mailToken($user, $action, array $data = [])
+    {
+        if (!$user) {
+            return false;
+        }
+
+        if (Yii::$app->has('authManager')) {
+            $auth = Yii::$app->authManager;
+            if ($auth->getItem($action) && !$auth->checkAccess($user->id, $action)) {
+                return false;
+            }
+        }
+
+        $token = $this->issueToken(array_merge([
+            'action'    => $action,
+            'email'     => $user->email,
+            'username'  => $user->username,
+            'notAfter'  => '+ 3 days',
+        ], $data));
+
+        $view = lcfirst(Inflector::id2camel($action . '-token'));
+
+        return Yii::$app->mailer->compose()
+            ->renderHtmlBody($view, compact('user', 'token'))
+            ->setTo([$user->email => $user->name])
+            ->send()
+        ;
     }
 }
