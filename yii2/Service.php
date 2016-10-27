@@ -11,11 +11,12 @@
 
 namespace hiqdev\yii2\confirmator;
 
+use hiqdev\php\confirmator\ServiceInterface;
 use hiqdev\php\confirmator\ServiceTrait;
 use Yii;
 use yii\helpers\Inflector;
 
-class Service extends \yii\base\Component
+class Service extends \yii\base\Component implements ServiceInterface
 {
     use ServiceTrait;
 

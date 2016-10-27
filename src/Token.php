@@ -13,12 +13,15 @@ namespace hiqdev\php\confirmator;
 
 class Token
 {
+    protected $service;
+
     protected $data = [];
 
     protected $string;
 
-    public function __construct(array $data = [], $string = null)
+    public function __construct(ServiceInterface $service, array $data = [], $string = null)
     {
+        $this->service = $service;
         $this->data = $this->prepareData($data);
         $this->string = $string ?: $this->genString();
     }
@@ -62,6 +65,11 @@ class Token
     public function mget()
     {
         return $this->data;
+    }
+
+    public function remove()
+    {
+        $this->service->removeToken($this->string);
     }
 
     public function check(array $data)

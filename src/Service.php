@@ -11,7 +11,7 @@
 
 namespace hiqdev\php\confirmator;
 
-class Service
+class Service implements ServiceInterface
 {
     use ServiceTrait;
 

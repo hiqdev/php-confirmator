@@ -15,7 +15,7 @@ trait ServiceTrait
 {
     public function issueToken(array $data)
     {
-        $token = new Token($data);
+        $token = new Token($this, $data);
         $this->writeToken($token);
 
         return $token;
@@ -39,7 +39,12 @@ trait ServiceTrait
 
         $data = $this->readToken($token);
 
-        return empty($data) ? null : new Token($data, $token);
+        return empty($data) ? null : new Token($this, $data, $token);
+    }
+
+    public function removeToken($token)
+    {
+        return $this->getStorage()->remove((string) $token);
     }
 
     protected function readToken($string)

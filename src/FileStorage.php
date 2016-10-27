@@ -47,4 +47,11 @@ class FileStorage implements StorageInterface
 
         return file_put_contents($path, $text);
     }
+
+    public function remove($name)
+    {
+        $path = $this->getFullPath($name);
+
+        return unlink($path);
+    }
 }
