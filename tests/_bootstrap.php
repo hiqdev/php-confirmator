@@ -9,6 +9,8 @@
  * @copyright Copyright (c) 2016, HiQDev (http://hiqdev.com/)
  */
 
+date_default_timezone_set('UTC');
+
 error_reporting(E_ALL & ~E_NOTICE);
 
 $bootstrap = __DIR__ . '/../src/_bootstrap.php';
