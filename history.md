@@ -1,7 +1,7 @@
 hiqdev/php-confirmator
 ----------------------
 
-## [Under development]
+## [0.0.1] - 2016-10-27
 
 - Added token remove operation
     - [0611d81] 2016-10-27 added `date_default_timezone_set` to tests bootstrap [sol@hiqdev.com]
