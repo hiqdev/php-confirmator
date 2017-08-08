@@ -13,6 +13,10 @@ namespace hiqdev\php\confirmator;
 
 trait ServiceTrait
 {
+    /**
+     * @param array $data
+     * @return Token
+     */
     public function issueToken(array $data)
     {
         $token = new Token($this, $data);
