@@ -15,7 +15,7 @@ use hiqdev\php\confirmator\FileStorage;
 use hiqdev\php\confirmator\Service;
 use hiqdev\php\confirmator\Token;
 
-class ServiceTest extends \PHPUnit_Framework_TestCase
+class ServiceTest extends \PHPUnit\Framework\TestCase
 {
     public $service;
     public $storage;
