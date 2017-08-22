@@ -2,8 +2,7 @@ package:
     type:           library
     name:           php-confirmator
     title:          Library for confirmation tokens
-    headline:       Php Confirmator
+    headline:       PHP Confirmator
     keywords:       php, confirmation, token, hash
-    namespace:      hiqdev\php\confirmator
     description:    |
         This package provides simple library for confirmation tokens.
