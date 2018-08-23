@@ -22,10 +22,10 @@ class Service extends \yii\base\Component implements ServiceInterface
 
     protected $_storage;
 
-    public function __construct(StorageInterface $storage, $config = [])
+    public function __construct(StorageInterface $storage, array $config = [])
     {
         parent::__construct($config);
-        $this->storage = $storage;
+        $this->_storage = $storage;
     }
 
     public function setStorage($value)
