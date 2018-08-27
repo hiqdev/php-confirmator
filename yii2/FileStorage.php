@@ -8,7 +8,10 @@
  * @copyright Copyright (c) 2016-2017, HiQDev (http://hiqdev.com/)
  */
 
-namespace hiqdev\php\confirmator;
+namespace hiqdev\yii2\confirmator;
+
+use hiqdev\php\confirmator\StorageInterface;
+use Yii;
 
 class FileStorage implements StorageInterface
 {
@@ -16,7 +19,7 @@ class FileStorage implements StorageInterface
 
     public function __construct($path = null)
     {
-        $this->path = $path;
+        $this->path = Yii::getAlias($path);
     }
 
     protected function getFullPath($name)
