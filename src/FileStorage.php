@@ -10,6 +10,8 @@
 
 namespace hiqdev\php\confirmator;
 
+use Yii;
+
 class FileStorage implements StorageInterface
 {
     public $path;
@@ -21,7 +23,7 @@ class FileStorage implements StorageInterface
 
     protected function getFullPath($name)
     {
-        return $this->path . '/' . $name[0] . '/' . $name;
+        return Yii::getAlias($this->path) . '/' . $name[0] . '/' . $name;
     }
 
     public function has($name)
