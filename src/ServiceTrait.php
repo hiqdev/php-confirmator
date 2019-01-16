@@ -34,6 +34,18 @@ trait ServiceTrait
         return $token->check($data);
     }
 
+    public function checkData(array $data)
+    {
+        $token = $this->findToken($data['token'] ?? null);
+        if (!$token) {
+            return [];
+        }
+
+        unset($data['token']);
+
+        return $token->check($data) ? $token->mget() : [];
+    }
+
     public function findToken($token)
     {
         if ($token instanceof Token) {
