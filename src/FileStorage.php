@@ -42,7 +42,7 @@ class FileStorage implements StorageInterface
         $dir = dirname($path);
         if (!is_dir($dir)) {
             if (!mkdir($dir, 0755, true)) {
-                throw new \Exception('Could not create storage');
+                throw new \Exception('Could not create storage in ' . $dir);
             }
         }
 
