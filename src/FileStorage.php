@@ -46,7 +46,12 @@ class FileStorage implements StorageInterface
             }
         }
 
-        return file_put_contents($path, $text);
+        $res = file_put_contents($path, $text);
+        if ($res === FALSE) {
+            throw new \Exception('Failed write file: ' . $path);
+        }
+
+        return $res;
     }
 
     public function remove($name)
