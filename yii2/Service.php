@@ -68,9 +68,11 @@ class Service extends \yii\base\Component implements ServiceInterface
 
         $view = lcfirst(Inflector::id2camel($action . '-token'));
 
+        $email_confirmed = $user->email_confirmed ?? $user->email;
+
         return Yii::$app->mailer->compose()
             ->renderHtmlBody($view, compact('user', 'token'))
-            ->setTo([$user->email => $user->name])
+            ->setTo([$email_confirmed => $user->name])
             ->send();
     }
 }
