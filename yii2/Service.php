@@ -63,7 +63,7 @@ class Service extends \yii\base\Component implements ServiceInterface
             'action'    => $action,
             'email'     => $user->email,
             'username'  => $user->username,
-            'notAfter'  => '+ 3 days',
+            'notAfter'  => '+1 hour',
         ], $data));
 
         $view = lcfirst(Inflector::id2camel($action . '-token'));

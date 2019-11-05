@@ -10,6 +10,8 @@
 
 namespace hiqdev\php\confirmator;
 
+use yii\base\ErrorException;
+
 class FileStorage implements StorageInterface
 {
     public $path;
@@ -41,17 +43,27 @@ class FileStorage implements StorageInterface
         $path = $this->getFullPath($name);
         $dir = dirname($path);
         if (!is_dir($dir)) {
-            if (!mkdir($dir, 0755, true)) {
+            try {
+                $success = mkdir($dir, 0755, true);
+            } catch (\Throwable $e) {
+                $success = false;
+            }
+            if (!$success) {
                 throw new \Exception('Could not create storage in ' . $dir);
             }
         }
 
-        $res = file_put_contents($path, $text);
-        if ($res === FALSE) {
+        try {
+            $success = file_put_contents($path, $text);
+        } catch (\Throwable $e) {
+            $success = false;
+        }
+
+        if ($success === false) {
             throw new \Exception('Failed write file: ' . $path);
         }
 
-        return $res;
+        return $success;
     }
 
     public function remove($name)
