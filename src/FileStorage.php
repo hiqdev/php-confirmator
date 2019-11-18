@@ -10,8 +10,6 @@
 
 namespace hiqdev\php\confirmator;
 
-use yii\base\ErrorException;
-
 class FileStorage implements StorageInterface
 {
     public $path;
