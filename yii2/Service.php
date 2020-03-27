@@ -61,6 +61,7 @@ class Service extends \yii\base\Component implements ServiceInterface
 
         $token = $this->issueToken(array_merge([
             'action'    => $action,
+            'id'        => $user->id,
             'email'     => $user->email,
             'username'  => $user->username,
             'notAfter'  => '+1 hour',
@@ -72,7 +73,7 @@ class Service extends \yii\base\Component implements ServiceInterface
 
         return Yii::$app->mailer->compose()
             ->renderHtmlBody($view, compact('user', 'token'))
-            ->setTo([$email_confirmed => $user->name])
+            ->setTo([$email_confirmed => $user->username])
             ->send();
     }
 }
