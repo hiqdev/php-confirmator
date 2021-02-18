@@ -59,12 +59,13 @@ class Service extends \yii\base\Component implements ServiceInterface
             }
         }
 
+        $lifetime = Yii::$app->params['token.lifetime'] ?? '1 hour';
         $token = $this->issueToken(array_merge([
             'action'    => $action,
             'id'        => $user->id,
             'email'     => $user->email,
             'username'  => $user->username,
-            'notAfter'  => '+1 hour',
+            'notAfter'  => "+{$lifetime}",
         ], $data));
 
         $view = lcfirst(Inflector::id2camel($action . '-token'));
