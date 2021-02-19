@@ -59,7 +59,7 @@ class Service extends \yii\base\Component implements ServiceInterface
             }
         }
 
-        $lifetime = Yii::$app->params['token.lifetime'] ?? '1 hour';
+        $lifetime = Yii::$app->params['confirmator.mail.token.lifetime'] ?? '1 hour';
         $token = $this->issueToken(array_merge([
             'action'    => $action,
             'id'        => $user->id,
