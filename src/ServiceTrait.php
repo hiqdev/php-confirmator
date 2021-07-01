@@ -12,6 +12,13 @@ namespace hiqdev\php\confirmator;
 
 trait ServiceTrait
 {
+    protected StorageInterface $storage;
+
+    public function getStorage(): StorageInterface
+    {
+        return $this->storage;
+    }
+
     /**
      * @param array $data
      * @return Token
