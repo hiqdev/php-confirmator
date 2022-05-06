@@ -79,6 +79,11 @@ class Token
     public function checkData(array $data)
     {
         foreach ($data as $key => $value) {
+            // TODO: Emergency hack to make email change work. Need to figure out.
+            $emailConfirms = ['clientConfirmEmail', 'contactConfirmEmail'];
+            if ($key === 'what' && in_array($value, $emailConfirms, true) && in_array($this->get($key), $emailConfirms, true)) {
+                continue;
+            }
             if ($value !== $this->get($key)) {
                 return false;
             }
