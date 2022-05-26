@@ -84,7 +84,7 @@ class Token
             if ($key === 'what' && in_array($value, $emailConfirms, true) && in_array($this->get($key), $emailConfirms, true)) {
                 continue;
             }
-            if ($value !== $this->get($key)) {
+            if ((string)$value !== (string)$this->get($key)) {
                 return false;
             }
         }
