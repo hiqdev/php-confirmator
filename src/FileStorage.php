@@ -21,11 +21,18 @@ class FileStorage implements StorageInterface
 
     protected function getFullPath($name)
     {
+        if (empty($name)) {
+            return null;
+        }
         return $this->path . '/' . $name[0] . '/' . $name;
     }
 
     public function has($name)
     {
+        $path = $this->getFullPath($name);
+        if ($path === null) {
+            return false;
+        }
         return is_file($this->getFullPath($name));
     }
 
@@ -67,6 +74,10 @@ class FileStorage implements StorageInterface
     public function remove($name)
     {
         $path = $this->getFullPath($name);
+
+        if ($path === null) {
+            return true;
+        }
 
         return unlink($path);
     }
