@@ -21,10 +21,11 @@ class FileStorage implements StorageInterface
 
     protected function getFullPath($name)
     {
-        if ($name === null || $name === '' || !is_string($name)) {
-            return null;
+        if (is_string($name) && $name !== '') {
+            return $this->path . '/' . $name[0] . '/' . $name;
         }
-        return $this->path . '/' . $name[0] . '/' . $name;
+
+        return null;
     }
 
     public function has($name)
