@@ -45,13 +45,13 @@ class Service extends Component implements ServiceInterface, MailTokenInterface
         $this->logger = $logger;
     }
 
-    public function mailToken(IdentityInterface $user, string $action, array $data = []): void
+    public function mailToken(IdentityInterface $user, string $action, array $data = []): bool
     {
         if (Yii::$app->has('authManager')) {
             $auth = Yii::$app->authManager;
             if ($auth->getItem($action) && !$auth->checkAccess($user->id, $action)) {
-                $this->logger->log('Forbidden to perform mail token action', Logger::LEVEL_ERROR);
-                return;
+                $this->logger->log("Forbidden to perform mail token action '$action'", Logger::LEVEL_ERROR);
+                return false;
             }
         }
 
@@ -69,28 +69,35 @@ class Service extends Component implements ServiceInterface, MailTokenInterface
                 'notAfter'  => "+{$this->mailTokenLifetime}",
             ], $data));
         } catch (\Throwable $e) {
-            $this->logger->log($e->getMessage(), Logger::LEVEL_ERROR);
-            return;
+            $this->logger->log("Failed to issue token for mail token action '$action': {$e->getMessage()}", Logger::LEVEL_ERROR);
+            return false;
         }
 
         $view = lcfirst(Inflector::id2camel($action . '-token'));
 
         $sendTo = $to ?? $user->email_confirmed ?? $user->email;
 
-        /** @var bool $result */
-        $result = $this->mailer->compose()
-            ->renderHtmlBody($view, compact('user', 'token'))
-            ->setTo([$sendTo => $user->username])
-            ->send();
+        try {
+            /** @var bool $result */
+            $result = $this->mailer->compose()
+                ->renderHtmlBody($view, compact('user', 'token'))
+                ->setTo([$sendTo => $user->username])
+                ->send();
+        } catch (\Throwable $e) {
+            $this->logger->log("Failed to send email on mail token action '$action': {$e->getMessage()}", Logger::LEVEL_ERROR);
+            return false;
+        }
 
         if (!$result) {
-            $this->logger->log('Failed to send email on mail token action', Logger::LEVEL_ERROR);
-            return;
+            $this->logger->log("Failed to send email on mail token action '$action'", Logger::LEVEL_ERROR);
+            return false;
         }
 
         $this->trigger(self::EVENT_AFTER_MAIL_TOKEN, new AfterMailTokenEvent([
             'identity' => $user,
             'action' => $action,
         ]));
+
+        return true;
     }
 }
