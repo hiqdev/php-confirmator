@@ -24,7 +24,7 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
     public $notAfter;
     public $notBefore;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->storage = new FileStorage(dirname(__DIR__) . '/tokens');
         $this->service = new Service($this->storage);
@@ -32,7 +32,7 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
         $this->notBefore = date('Y-m-d H:i:s', time() - 3600);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->storage = null;
         $this->service = null;

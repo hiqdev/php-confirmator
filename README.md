@@ -4,9 +4,6 @@
 
 [![Latest Stable Version](https://poser.pugx.org/hiqdev/php-confirmator/v/stable)](https://packagist.org/packages/hiqdev/php-confirmator)
 [![Total Downloads](https://poser.pugx.org/hiqdev/php-confirmator/downloads)](https://packagist.org/packages/hiqdev/php-confirmator)
-[![Build Status](https://img.shields.io/travis/hiqdev/php-confirmator.svg)](https://travis-ci.org/hiqdev/php-confirmator)
-[![Scrutinizer Code Coverage](https://img.shields.io/scrutinizer/coverage/g/hiqdev/php-confirmator.svg)](https://scrutinizer-ci.com/g/hiqdev/php-confirmator/)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/hiqdev/php-confirmator.svg)](https://scrutinizer-ci.com/g/hiqdev/php-confirmator/)
 
 This package provides simple library for confirmation tokens.
 

@@ -38,3 +38,6 @@ phpunit.phar
 
 # temporary files
 /tests/tokens
+
+# phpunit cache
+/.phpunit.cache
