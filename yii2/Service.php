@@ -49,6 +49,7 @@ class Service extends Component implements ServiceInterface, MailTokenInterface
     {
         if (Yii::$app->has('authManager')) {
             $auth = Yii::$app->authManager;
+            /** @psalm-suppress UndefinedInterfaceMethod getItem() is public on PhpManager, which the configured auth manager extends */
             if ($auth->getItem($action) && !$auth->checkAccess($user->id, $action)) {
                 $this->logger->log("Forbidden to perform mail token action '$action'", Logger::LEVEL_ERROR);
                 return false;
@@ -78,7 +79,10 @@ class Service extends Component implements ServiceInterface, MailTokenInterface
         $sendTo = $to ?? $user->email_confirmed ?? $user->email;
 
         try {
-            /** @var bool $result */
+            /**
+             * @psalm-suppress UndefinedInterfaceMethod renderHtmlBody() is provided by the message class the application configures
+             * @var bool $result
+             */
             $result = $this->mailer->compose()
                 ->renderHtmlBody($view, compact('user', 'token'))
                 ->setTo([$sendTo => $user->username])

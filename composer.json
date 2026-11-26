@@ -44,7 +44,9 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "^12"
+        "phpunit/phpunit": "^12",
+        "vimeo/psalm": "^6.0",
+        "yiisoft/yii2": "^2.0"
     },
     "suggest": {
         "yiisoft/yii2": "Install framework to use php-confirmator with yii2 functionality"
@@ -53,6 +55,17 @@
         "psr-4": {
             "hiqdev\\php\\confirmator\\": "src",
             "hiqdev\\yii2\\confirmator\\": "yii2"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
         }
     }
 }
