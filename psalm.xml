@@ -24,21 +24,17 @@
         </ignoreFiles>
     </projectFiles>
     <stubs>
-        <!-- The global Yii class is not autoloadable; applications require it at bootstrap. -->
         <file name="vendor/yiisoft/yii2/Yii.php"/>
     </stubs>
     <issueHandlers>
-        <!-- These default to "info" even at errorLevel 5; forced to "error" so undefined-key bugs fail the build. -->
         <PossiblyUndefinedStringArrayOffset errorLevel="error" />
         <PossiblyUndefinedIntArrayOffset errorLevel="error" />
         <PossiblyUndefinedArrayOffset errorLevel="error" />
 
-        <!-- Library: classes, interface methods and event properties are used by consuming applications, outside the analysed tree. -->
         <UnusedClass errorLevel="suppress" />
         <PossiblyUnusedMethod errorLevel="suppress" />
         <PossiblyUnusedProperty errorLevel="suppress" />
 
-        <!-- Style check only: the package does not use the #[Override] attribute. -->
         <MissingOverrideAttribute errorLevel="suppress" />
     </issueHandlers>
 </psalm>
